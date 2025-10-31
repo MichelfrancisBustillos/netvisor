@@ -135,3 +135,5 @@ pub mod lidarr;
 pub mod huntarr;
 pub mod cleanuparr;
 pub mod autobrr;
+pub mod camera;
+pub mod iot;
