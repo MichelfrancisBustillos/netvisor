@@ -122,7 +122,7 @@ For larger features or bug fixes:
    3. Install project dependencies
 
         ```bash
-        make install-dev-macos
+        make install-dev-mac
         ```
 
         This installs:
