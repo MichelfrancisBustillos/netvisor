@@ -118,3 +118,7 @@ pub mod uptime_kuma;
 pub mod web_service;
 pub mod wg_dashboard;
 pub mod workstation;
+pub mod audiobookshelf;
+pub mod komga;
+pub mod immich;
+pub mod memos;
