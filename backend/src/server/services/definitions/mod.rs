@@ -123,3 +123,4 @@ pub mod komga;
 pub mod immich;
 pub mod memos;
 pub mod authentik;
+pub mod mealie;
