@@ -6,26 +6,26 @@ use crate::server::services::types::patterns::Pattern;
 use crate::server::subnets::types::base::SubnetType;
 
 #[derive(Default, Clone, Eq, PartialEq, Hash)]
-pub struct Lubelogger;
+pub struct Graylog;
 
-impl ServiceDefinition for Lubelogger {
+impl ServiceDefinition for Graylog {
     fn name(&self) -> &'static str {
-        "Lubelogger"
+        "Graylog"
     }
     fn description(&self) -> &'static str {
-        "Vehicle Maintenance Records and Fuel Mileage Tracker"
+        "Security Information and Event Management (SIEM) solution and log analytics platform"
     }
     fn category(&self) -> ServicezCategory {
-        ServiceCategory::HomeAutomation
+        ServiceCategory::Monitoring
     }
 
     fn discovery_pattern(&self) -> Pattern<'_> {
-        Pattern::Endpoint(PortBase::HttpAlt, "/", "LubeLogger")
+        Pattern::Endpoint(PortBase::new_tcp(9000), "/", "Graylog")
     }
 
     fn dashboard_icons_path(&self) -> &'static str {
-        "Lubelogger"
+        "Graylog"
     }
 }
 
-inventory::submit!(ServiceDefinitionFactory::new(create_service::<Lubelogger>));
+inventory::submit!(ServiceDefinitionFactory::new(create_service::<Graylog>));

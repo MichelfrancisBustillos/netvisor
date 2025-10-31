@@ -16,7 +16,7 @@ impl ServiceDefinition for Grocy {
         "web-based self-hosted groceries & household management solution"
     }
     fn category(&self) -> ServicezCategory {
-        ServiceCategory::Media
+        ServiceCategory::HomeAutomation
     }
 
     fn discovery_pattern(&self) -> Pattern<'_> {

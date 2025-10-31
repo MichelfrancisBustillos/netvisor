@@ -16,7 +16,7 @@ impl ServiceDefinition for Mealie {
         "A self-hosted recipe manager and meal planner"
     }
     fn category(&self) -> ServicezCategory {
-        ServiceCategory::Media
+        ServiceCategory::HomeAutomation
     }
 
     fn discovery_pattern(&self) -> Pattern<'_> {

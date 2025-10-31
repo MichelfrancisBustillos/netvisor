@@ -126,3 +126,4 @@ pub mod authentik;
 pub mod mealie;
 pub mod lubelogger;
 pub mod grocy;
+pub mod graylog;
