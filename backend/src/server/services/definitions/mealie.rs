@@ -15,7 +15,7 @@ impl ServiceDefinition for Mealie {
     fn description(&self) -> &'static str {
         "A self-hosted recipe manager and meal planner"
     }
-    fn category(&self) -> ServicezCategory {
+    fn category(&self) -> ServicesCategory {
         ServiceCategory::HomeAutomation
     }
 

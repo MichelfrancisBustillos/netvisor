@@ -15,7 +15,7 @@ impl ServiceDefinition for Komga {
     fn description(&self) -> &'static str {
         "a media server for your comics, mangas, BDs, magazines and eBooks."
     }
-    fn category(&self) -> ServicezCategory {
+    fn category(&self) -> ServicesCategory {
         ServiceCategory::Media
     }
 

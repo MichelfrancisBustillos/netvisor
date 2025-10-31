@@ -15,7 +15,7 @@ impl ServiceDefinition for Immich {
     fn description(&self) -> &'static str {
         "Self-hosted photo and video management solution"
     }
-    fn category(&self) -> ServicezCategory {
+    fn category(&self) -> ServicesCategory {
         ServiceCategory::Media
     }
 

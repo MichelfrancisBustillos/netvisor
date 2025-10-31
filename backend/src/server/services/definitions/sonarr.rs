@@ -15,7 +15,7 @@ impl ServiceDefinition for Sonarr {
     fn description(&self) -> &'static str {
         "a TV collection manager for Usenet and BitTorrent users."
     }
-    fn category(&self) -> ServicezCategory {
+    fn category(&self) -> ServicesCategory {
         ServiceCategory::Media
     }
 

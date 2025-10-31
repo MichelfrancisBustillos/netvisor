@@ -15,7 +15,7 @@ impl ServiceDefinition for Prowlarr {
     fn description(&self) -> &'static str {
         "The Ultimate Indexer Manager."
     }
-    fn category(&self) -> ServicezCategory {
+    fn category(&self) -> ServicesCategory {
         ServiceCategory::Media
     }
 

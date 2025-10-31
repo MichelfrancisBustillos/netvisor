@@ -15,7 +15,7 @@ impl ServiceDefinition for Bazarr {
     fn description(&self) -> &'static str {
         "a companion application to Sonarr and Radarr that manages and downloads subtitles"
     }
-    fn category(&self) -> ServicezCategory {
+    fn category(&self) -> ServicesCategory {
         ServiceCategory::Media
     }
 

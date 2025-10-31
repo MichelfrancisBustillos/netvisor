@@ -15,7 +15,7 @@ impl ServiceDefinition for Graylog {
     fn description(&self) -> &'static str {
         "Security Information and Event Management (SIEM) solution and log analytics platform"
     }
-    fn category(&self) -> ServicezCategory {
+    fn category(&self) -> ServicesCategory {
         ServiceCategory::Monitoring
     }
 

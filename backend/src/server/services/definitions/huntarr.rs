@@ -15,7 +15,7 @@ impl ServiceDefinition for Huntarr {
     fn description(&self) -> &'static str {
         "finds missing media and upgrades your existing content."
     }
-    fn category(&self) -> ServicezCategory {
+    fn category(&self) -> ServicesCategory {
         ServiceCategory::Media
     }
 
