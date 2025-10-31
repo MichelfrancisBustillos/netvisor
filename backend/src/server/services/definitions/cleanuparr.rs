@@ -12,7 +12,7 @@ impl ServiceDefinition for Cleanuparr {
         "Cleanuparr"
     }
     fn description(&self) -> &'static str {
-        "removes incomplete or blocked downloads, updates queues, and enforces blacklists or whitelists to manage file selection."
+        "Torrent cleanup tool for Sonarr and Radarr"
     }
     fn category(&self) -> ServiceCategory {
         ServiceCategory::Media
