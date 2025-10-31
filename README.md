@@ -14,26 +14,44 @@ NetVisor scans your network, identifies hosts and services, and generates an int
 
 ## Table of Contents
 
-- [Architecture](#architecture)
-- [Installation](#installation)
-- [Discovery](#discovery)
-  - [Docker](#docker)
-  - [Network Scanning](#network-scanning)
-- [Network Organization](#network-organization)
-  - [Consolidating Hosts](#consolidating-hosts)
-  - [Subnets](#subnets)
-  - [Groups](#groups)
-- [Topology Visualization](#topology-visualization)
-- [Configuration](#configuration)
-  - [Daemon Configuration](#daemon-configuration)
-  - [Server Configuration](#server-configuration)
-- [Troubleshooting](#troubleshooting)
-- [Uninstall Daemon](#uninstall-daemon)
-- [FAQ](#faq)
-  - [Where does NetVisor store my data?](#where-does-netvisor-store-my-data)
-  - [What services can NetVisor discover?](#what-services-can-netvisor-discover)
-  - [Are VLANs supported?](#are-vlans-supported)
-  - [Is IPv6 Supported?](#is-ipv6-supported)
+- [NetVisor](#netvisor)
+  - [Table of Contents](#table-of-contents)
+  - [Architecture](#architecture)
+  - [Installation](#installation)
+    - [0. Install Requirements](#0-install-requirements)
+      - [Daemon](#daemon)
+      - [Server (Docker - Recommended)](#server-docker---recommended)
+      - [Server (Building from source)](#server-building-from-source)
+    - [1. Start the Server](#1-start-the-server)
+    - [2. Load the UI](#2-load-the-ui)
+    - [3. Deploy Additional Daemons (Optional)](#3-deploy-additional-daemons-optional)
+  - [Discovery](#discovery)
+    - [Docker](#docker)
+    - [Network Scanning](#network-scanning)
+  - [Network Organization](#network-organization)
+    - [Managing Virtualization \& Containers](#managing-virtualization--containers)
+    - [Consolidating Hosts](#consolidating-hosts)
+    - [Subnets](#subnets)
+    - [Groups](#groups)
+  - [Topology Visualization](#topology-visualization)
+  - [Configuration](#configuration)
+    - [Daemon Configuration](#daemon-configuration)
+      - [Configuration File Location](#configuration-file-location)
+    - [Server Configuration](#server-configuration)
+    - [UI Configuration](#ui-configuration)
+  - [Troubleshooting](#troubleshooting)
+    - [Error: CONCURRENT\_SCANS is too high for this system](#error-concurrent_scans-is-too-high-for-this-system)
+    - [Integrated Daemon Not Initializing](#integrated-daemon-not-initializing)
+  - [Uninstall Daemon](#uninstall-daemon)
+    - [Linux (Docker)](#linux-docker)
+    - [Linux (Binary)](#linux-binary)
+    - [Mac (Binary)](#mac-binary)
+    - [Windows (Binary)](#windows-binary)
+  - [FAQ](#faq)
+    - [Where does NetVisor store my data?](#where-does-netvisor-store-my-data)
+    - [Are VLANs supported?](#are-vlans-supported)
+    - [Is IPv6 supported?](#is-ipv6-supported)
+    - [What services can NetVisor discover?](#what-services-can-netvisor-discover)
 
 ## Architecture
 
@@ -52,14 +70,17 @@ Refer to [configuration](#configuration) for more setup options.
 ### 0. Install Requirements
 
 #### Daemon
+
 - **Linux**: Docker with host networking support, OR binary installation
 - **Mac**: Binary installation only (Docker Desktop does not support host networking)
 
 #### Server (Docker - Recommended)
+
 - Docker
 - Docker Compose
 
 #### Server (Building from source)
+
 - Rust 1.90 or later
 - Node.js 20 or later
 
@@ -80,6 +101,7 @@ The server collects data from the daemon(s) and generates the topology visualiza
 Navigate to `http://<your-ip>:60072` (or whichever port you configured) to load the UI.
 
 On first load, the UI will automatically:
+
 - Create your user account
 - Initialize a default network
 - Start the integrated daemon (if running the full docker-compose stack)
@@ -104,6 +126,7 @@ You can also do this at any point after running discovery with the integrated da
 ### Docker
 
 If the host running the daemon is also running Docker, the daemon automatically detects containerized services by connecting to the Docker socket. This provides enhanced service discovery including:
+
 - Container names and metadata
 - Service-to-container relationships
 - Internal Docker networks
@@ -138,7 +161,6 @@ Hosts with Proxmox and Docker services will have an additional virtualization ta
   <img src="./media/virtualization_management.png" width="800" alt="Virtualization Management">
 </p>
 
-
 ### Consolidating Hosts
 
 The discovery process does its best to merge duplicate hosts, but this isn't always possible. You can consolidate hosts that actually represent multiple interfaces or services on the same host using the Consolidate feature. This migrates all ports, interfaces, and services to a single host record.
@@ -172,6 +194,7 @@ Groups let you visualize logical connections between services, such as a web app
 The topology auto-generates from your hosts, subnets, and service groups, creating living documentation that updates as your network changes.
 
 You can customize the visualization:
+
 - **Anchor points**: Click edges to change where they connect to nodes
 - **Subnet sizing**: Drag subnet boundaries to resize
 - **Layout**: Drag hosts and subnets to organize your topology
@@ -200,10 +223,10 @@ Both the server and daemon support multiple configuration methods with the follo
 | Network ID | `--network-id` | `NETVISOR_NETWORK_ID` | `network_id` | `None` | Network ID to report discoveries to (auto-assigned for integrated daemon) |
 | API key | `--api-key` | `NETVISOR_DAEMON_API_KEY` | `daemon_api_key` | `None` | API key that daemon will use to authenticate with server (auto-assigned; UI will display notification if needed) |
 
-
 #### Configuration File Location
 
 The daemon automatically creates and maintains a configuration file at:
+
 - **Linux**: `~/.config/netvisor/daemon/config.json`
 - **macOS**: `~/Library/Application Support/com.netvisor.daemon/config.json`
 - **Windows**: `%APPDATA%\netvisor\daemon\config.json`
@@ -234,18 +257,21 @@ The UI supports the following configuration options for API connectivity:
 **Examples:**
 
 - **Direct access (development)**: Use default settings
+
 ```env
   PUBLIC_SERVER_HOSTNAME=default
   PUBLIC_SERVER_PORT=60072
 ```
 
 - **Reverse proxy (production)**: Use default hostname, omit port
+
 ```env
   PUBLIC_SERVER_HOSTNAME=default
   # PUBLIC_SERVER_PORT not needed
 ```
 
 - **API on different domain**: Specify both hostname and port
+
 ```env
   PUBLIC_SERVER_HOSTNAME=api.example.com
   PUBLIC_SERVER_PORT=8080
@@ -278,7 +304,7 @@ If the integrated daemon (included in docker-compose.yml) fails to initialize af
 
 ## Uninstall Daemon
 
-#### Linux (Docker)
+### Linux (Docker)
 
 ```bash
 docker stop netvisor-daemon
@@ -286,21 +312,22 @@ docker rm netvisor-daemon
 docker volume rm netvisor_daemon-config  # Optional: remove persisted config
 ```
 
-#### Linux (Binary)
+### Linux (Binary)
 
 ```bash
 sudo rm /usr/local/bin/netvisor-daemon
 rm -rf ~/.config/netvisor/daemon
 ```
 
-#### Mac (Binary)
+### Mac (Binary)
 
 ```bash
 sudo rm /usr/local/bin/netvisor-daemon
 rm -rf ~/Library/Application\ Support/com.netvisor.daemon
 ```
 
-#### Windows (Binary)
+### Windows (Binary)
+
 ```cmd
 del %LOCALAPPDATA%\Programs\netvisor-daemon\netvisor-daemon.exe
 rmdir /s %APPDATA%\netvisor\daemon
@@ -317,7 +344,7 @@ NetVisor stores all data locally in a SQLite database on your server. No data is
 Yes, you can collect information from hosts on multiple VLANs by deploying multiple daemons:
 
 1. Go to the **Discover** tab in the UI
-2. Click **"Create New Daemon"** 
+2. Click **"Create New Daemon"**
 3. Deploy the generated daemon on a host connected to each VLAN you want to scan
 
 You may need to use the [Consolidate](#consolidating-hosts) feature to merge hosts that appear on multiple VLANs with different IP addresses.
