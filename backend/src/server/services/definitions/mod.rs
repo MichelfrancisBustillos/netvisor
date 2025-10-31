@@ -125,3 +125,4 @@ pub mod memos;
 pub mod authentik;
 pub mod mealie;
 pub mod lubelogger;
+pub mod grocy;

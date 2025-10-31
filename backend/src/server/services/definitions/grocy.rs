@@ -6,26 +6,29 @@ use crate::server::services::types::patterns::Pattern;
 use crate::server::subnets::types::base::SubnetType;
 
 #[derive(Default, Clone, Eq, PartialEq, Hash)]
-pub struct Lubelogger;
+pub struct Grocy;
 
-impl ServiceDefinition for Lubelogger {
+impl ServiceDefinition for Grocy {
     fn name(&self) -> &'static str {
-        "Lubelogger"
+        "Grocy"
     }
     fn description(&self) -> &'static str {
-        "Vehicle Maintenance Records and Fuel Mileage Tracker"
+        "web-based self-hosted groceries & household management solution"
     }
     fn category(&self) -> ServicezCategory {
         ServiceCategory::Media
     }
 
     fn discovery_pattern(&self) -> Pattern<'_> {
-        Pattern::Endpoint(PortBase::HttpAlt, "/", "LubeLogger")
+        Pattern::AnyOf(vec![
+            Pattern::Endpoint(PortBase::Http, "/", "Grocy"),
+            Pattern::Endpoint(PortBase::Https, "/", "Grocy")
+        ])
     }
 
     fn dashboard_icons_path(&self) -> &'static str {
-        "Lubelogger"
+        "Grocy"
     }
 }
 
-inventory::submit!(ServiceDefinitionFactory::new(create_service::<Lubelogger>));
+inventory::submit!(ServiceDefinitionFactory::new(create_service::<Grocy>));
