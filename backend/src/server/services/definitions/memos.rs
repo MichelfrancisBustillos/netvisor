@@ -15,7 +15,7 @@ impl ServiceDefinition for Memos {
     fn description(&self) -> &'static str {
         "An open-source, self-hosted note-taking service."
     }
-    fn category(&self) -> ServicesCategory {
+    fn category(&self) -> ServiceCategory {
         ServiceCategory::Media
     }
 

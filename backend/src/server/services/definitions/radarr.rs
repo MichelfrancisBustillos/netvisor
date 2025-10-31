@@ -15,7 +15,7 @@ impl ServiceDefinition for Radarr {
     fn description(&self) -> &'static str {
         "a movie collection manager for Usenet and BitTorrent users."
     }
-    fn category(&self) -> ServicesCategory {
+    fn category(&self) -> ServiceCategory {
         ServiceCategory::Media
     }
 

@@ -15,7 +15,7 @@ impl ServiceDefinition for AudioBookShelf {
     fn description(&self) -> &'static str {
         "Self-hosted audiobook and podcast server."
     }
-    fn category(&self) -> ServicesCategory {
+    fn category(&self) -> ServiceCategory {
         ServiceCategory::Media
     }
 

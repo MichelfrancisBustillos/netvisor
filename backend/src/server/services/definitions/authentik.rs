@@ -15,7 +15,7 @@ impl ServiceDefinition for Authentik {
     fn description(&self) -> &'static str {
         "a self-hosted, open source identity provider"
     }
-    fn category(&self) -> ServicesCategory {
+    fn category(&self) -> ServiceCategory {
         ServiceCategory::Media
     }
 

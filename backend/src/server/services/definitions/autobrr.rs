@@ -15,7 +15,7 @@ impl ServiceDefinition for Autobrr {
     fn description(&self) -> &'static str {
         "the modern autodl-irssi replacement."
     }
-    fn category(&self) -> ServicesCategory {
+    fn category(&self) -> ServiceCategory {
         ServiceCategory::Media
     }
 

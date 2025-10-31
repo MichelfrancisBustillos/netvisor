@@ -15,7 +15,7 @@ impl ServiceDefinition for Cleanuparr {
     fn description(&self) -> &'static str {
         "removes incomplete or blocked downloads, updates queues, and enforces blacklists or whitelists to manage file selection."
     }
-    fn category(&self) -> ServicesCategory {
+    fn category(&self) -> ServiceCategory {
         ServiceCategory::Media
     }
 

@@ -15,7 +15,7 @@ impl ServiceDefinition for Grocy {
     fn description(&self) -> &'static str {
         "web-based self-hosted groceries & household management solution"
     }
-    fn category(&self) -> ServicesCategory {
+    fn category(&self) -> ServiceCategory {
         ServiceCategory::HomeAutomation
     }
 

@@ -15,7 +15,7 @@ impl ServiceDefinition for Lubelogger {
     fn description(&self) -> &'static str {
         "Vehicle Maintenance Records and Fuel Mileage Tracker"
     }
-    fn category(&self) -> ServicesCategory {
+    fn category(&self) -> ServiceCategory {
         ServiceCategory::HomeAutomation
     }
 
