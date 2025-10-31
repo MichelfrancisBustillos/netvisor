@@ -122,3 +122,4 @@ pub mod audiobookshelf;
 pub mod komga;
 pub mod immich;
 pub mod memos;
+pub mod authentik;
