@@ -20,9 +20,7 @@ impl ServiceDefinition for Komga {
     }
 
     fn discovery_pattern(&self) -> Pattern<'_> {
-        Pattern::AllOf(vec![
-            Pattern::Endpoint(PortBase::new_tcp(25600), "/", "Komga")
-        ])
+        Pattern::Endpoint(PortBase::new_tcp(25600), "/", "Komga")
     }
 
     fn dashboard_icons_path(&self) -> &'static str {

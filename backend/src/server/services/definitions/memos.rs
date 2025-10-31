@@ -20,9 +20,7 @@ impl ServiceDefinition for Memos {
     }
 
     fn discovery_pattern(&self) -> Pattern<'_> {
-        Pattern::AllOf(vec![
-            Pattern::Endpoint(PortBase::new_tcp(5230), "/explore", "Memos")
-        ])
+        Pattern::Endpoint(PortBase::new_tcp(5230), "/explore", "Memos")
     }
 
     fn dashboard_icons_path(&self) -> &'static str {

@@ -20,9 +20,7 @@ impl ServiceDefinition for Immich {
     }
 
     fn discovery_pattern(&self) -> Pattern<'_> {
-        Pattern::AllOf(vec![
-            Pattern::Endpoint(PortBase::new_tcp(2283), "/photos", "Immich")
-        ])
+        Pattern::Endpoint(PortBase::new_tcp(2283), "/photos", "Immich")
     }
 
     fn dashboard_icons_path(&self) -> &'static str {

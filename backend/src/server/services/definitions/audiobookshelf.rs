@@ -20,9 +20,7 @@ impl ServiceDefinition for AudioBookShelf {
     }
 
     fn discovery_pattern(&self) -> Pattern<'_> {
-        Pattern::AllOf(vec![
-            Pattern::Port(PortBase::new_tcp(13378))
-        ])
+        Pattern::Port(PortBase::new_tcp(13378))
     }
 
     fn dashboard_icons_path(&self) -> &'static str {
