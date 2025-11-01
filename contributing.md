@@ -103,6 +103,8 @@ For larger features or bug fixes:
    3. Install project dependencies
 
         ```bash
+        npm i --save-dev prettier-plugin-svelte prettier prettier-plugin-tailwindcss
+        
         make install-dev-linux
         ```
 
